@@ -1,0 +1,18 @@
+Salvam datele initiale date prin fisierul de input astfel:
+	-numarul pe care trebuie sa-l convertim in EAX,
+	-baza in care trebuie sa convertim in EBX
+Daca baza este mai mica decat 2 sau mai mare decat 16, scriem un mesaj de eroare
+si programul se va incheia. Daca baza se afla in [2,16], faptul ca am salvat
+datele in EAX, EBX ne va facilita uzul instructiunii div. Avem trei cazuri, cand
+numarul este un double, word sau byte. Impartim prin ebx si de fiecare data 
+adaugam restului(care se va afla in EDX, DX sau AH) 48, daca el este in intervalul
+[0,9], pentru a-l converti la caracterul-cifra, sau 55, daca este [10,16], pentru a-l
+transforma in 'A'-'F', litere corespunzatoare bazelor mai mari ca 10. Acest rest il
+punem pe pozitia ECX( unde ecx reprezinta indexul in cadrul stringului pe care il construim,
+index ce creste la fiecare impartire) in stringul rezultat. La final, stringul nostru
+va reprezenta numarul convertit, inversat, asa ca va trebui sa-l inversam. Vom face
+acest lucru astfel: luam 2 indecsi, unul la inceput si unul la sfarsit, si inversam caracterele
+din string de pe pozitiile respective, apoi crestem indexul de inceput si-l scadem pe cel
+de final, pana cand am ajuns la jumatatea stringului. In acest moment, programul este
+incheiat, iar in converted_number vom avea o reprezentare string a numarului initial
+convertit in baza in care dorim. 
